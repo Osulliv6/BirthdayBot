@@ -1,0 +1,23 @@
+name: Birthday Bot
+
+on:
+  schedule:
+    - cron: "0 14 * * *"  # Runs at 9 AM EST (14:00 UTC)
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install requests pytz
+
+      - name: Run birthday bot
+        run: python birthday_bot.py
